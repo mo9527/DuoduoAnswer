@@ -1,0 +1,33 @@
+# 忽略Idea生成的项目文件
+*.iml
+.idea/
+*/*.iml
+
+# 忽略eclipse的项目文件
+.project
+.classpath
+.settings/
+
+# 忽略所有target
+target/
+*/target/
+
+# 生成的jar包全部忽略
+war/
+temp/
+WebContent/
+
+# 忽略war工程下的lib与class文件
+*/WebContent/WEB-INF/classes/
+*/WebContent/WEB-INF/lib/
+
+# 主配置文件忽略
+system.properties
+log4j.properties
+aliyun_mq_config.properties
+#logback.xml
+config.properties
+# 忽略linux vim交换文件
+.*.swp
+logs/
+log/

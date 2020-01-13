@@ -1,0 +1,46 @@
+// add those function into fiddler customer rules;
+
+
+//往本地文件中写内容
+
+static function writeFile(filename, context)
+
+{
+
+    var fso = new ActiveXObject("Scripting.FileSystemObject");
+
+    var f = fso.OpenTextFile(filename,2);
+
+    f.write(context);
+
+    f.Close();
+
+}
+
+static function Log(msg){
+    FiddlerApplication.Log.LogString(msg);
+    
+}
+    
+static function OnWebSocketMessage(oMsg: WebSocketMessage) {
+    // Log Message to the LOG tab
+    Log(oMsg.ToString());
+
+    // 保存文件到本地
+    try{
+        var playLoadStr = oMsg.PayloadAsString();
+        var playLoadJson = Fiddler.WebFormats.JSON.JsonDecode(playLoadStr);
+        var cmd = playLoadJson.JSONObject["cmd"];
+        var reserve = playLoadJson.JSONObject["reserve"];
+    
+        if(cmd == "11" && reserve == 0){ // 11 is question message
+            var filePath = "F:\\spider_save\\websocket.txt";
+            writeFile(filePath, playLoadStr);
+        
+        }
+    }catch(e){
+        
+    }
+    
+    
+}
