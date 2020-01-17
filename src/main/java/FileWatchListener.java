@@ -157,9 +157,9 @@ public class FileWatchListener implements FileAlterationListener {
 
             System.out.println("#############################我是分割线##############################");
             System.out.println("问题： " + questionStr + "  ->>  " + JSONObject.toJSONString(options));
-            if (!findInDBFile(questionStr)){
-                SearchAnswer.search(questionStr, options);
-            }
+
+            findInDBFile(questionStr);
+            SearchAnswer.search(questionStr, options);
             System.out.println();
             System.out.println();
         } catch (Exception e) {
